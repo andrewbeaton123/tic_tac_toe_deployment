@@ -24,3 +24,32 @@ variable "tags" {
     managed_by = "terraform"
   }
 }
+
+variable "model_serve_api_key" {
+  type        = string
+  sensitive   = true
+  description = "API key for model serve authentication. Stored as a Container App secret — never appears in plan/apply output."
+}
+
+variable "flask_secret_key" {
+  type        = string
+  sensitive   = true
+  description = "Secret key used by Flask to sign session cookies. Must be a long random string."
+}
+
+variable "model_serve_image_tag" {
+  type        = string
+  default     = "latest"
+  description = "Docker image tag for the model serve container. Use a git SHA instead of 'latest' in production."
+}
+
+variable "web_ui_image_tag" {
+  type        = string
+  default     = "latest"
+  description = "Docker image tag for the web UI container."
+}
+
+variable "alert_email" {
+  type        = string
+  description = "Email address that receives monitoring alerts (error rate spikes, container restarts)."
+}
